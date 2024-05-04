@@ -66,7 +66,7 @@ public class AuthService {
                 .build();
     }
 
-    public JWTResponseDto signUp(String fullName,String userName,String nationalId,String email, String password) {
+    public JWTResponseDto signUp(String fullName,String userName,Long nationalId,String email, String password) {
         Optional<User> user = userRepo.findByUserName(userName);
         if (user.isPresent()) {
             throw new UsernameNotFoundException("This UserName Already Exists");
