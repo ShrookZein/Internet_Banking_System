@@ -37,14 +37,14 @@ public class StartUpApp implements CommandLineRunner {
             userRoles.add(roleService.findByName("user"));
 
 
-            userService.save(new User((Long) null, "Nour","Shaheen90","300075215333845", "nour@gmail.com", "12345678",adminRoles,true,true,true,true));
+            userService.save(new User((Long) null, "Nour","Shaheen90",30007521533384L, "nour@gmail.com", "12345678",adminRoles,true,true,true,true));
 
-            userService.save(new User(null, "Ali","Mohamed12","15895254789652", "ali@gmail.com", "12345678",adminRoles,true,true,true,true));
+            userService.save(new User(null, "Ali","Mohamed12",30007521533385L, "ali@gmail.com", "12345678",adminRoles,true,true,true,true));
 
-            userService.save(new User(null, "Shrook","Zein8080","445588776622554", "srouk7007@gmail.com", "12345678",userRoles,true,true,true,true));
-            userService.save(new User(null, "Maha","Gaber5050","15246857954632", "Maha20@gmail.com", "12345678",userRoles,true,true,true,true));
-            userService.save(new User(null, "Noha","Zeinnn8070","521478952347568", "Noha@gmail.com", "12345678",userRoles,true,true,true,true));
-            userService.save(new User(null, "Mohamed","Maher774","452178945632154", "mohamed20@gmail.com", "123456789",userRoles,true,true,true,true));
+            userService.save(new User(null, "Shrook","Zein8080",30007521533377L, "srouk7007@gmail.com", "12345678",userRoles,true,true,true,true));
+            userService.save(new User(null, "Maha","Gaber5050",37007521533384L, "Maha20@gmail.com", "12345678",userRoles,true,true,true,true));
+            userService.save(new User(null, "Noha","Zeinnn8070",30007521533484L, "Noha@gmail.com", "12345678",userRoles,true,true,true,true));
+            userService.save(new User(null, "Mohamed","Maher774",30447521533384L, "mohamed20@gmail.com", "123456789",userRoles,true,true,true,true));
         }
 
     }

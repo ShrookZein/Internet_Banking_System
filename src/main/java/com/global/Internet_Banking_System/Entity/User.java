@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class User {
     private Long id;
     private String FullName;
     private String userName;
-    private String nationalId;
+    private Long nationalId;
     @Email
     private String email;
     private String password;
