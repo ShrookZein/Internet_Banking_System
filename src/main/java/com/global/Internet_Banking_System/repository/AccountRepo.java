@@ -11,5 +11,5 @@ import java.util.Set;
 @Repository
 public interface AccountRepo extends JpaRepository<Accounts,Long> {
      @Query("SELECT a FROM Accounts a WHERE a.boolNationalId=?1")
-     Set<Accounts> findByBoolNationalId(Long boolNationalId);
+     List<Accounts> findByBoolNationalId(Long boolNationalId);
 }

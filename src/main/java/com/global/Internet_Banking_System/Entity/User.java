@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.math.BigInteger;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -33,10 +34,10 @@ public class User {
 //    @JsonIgnore
     @JoinTable(name = "sec_user_roles",joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "national_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     @OrderColumn(name = "id")
-    private Set<RoleModel>roles=new HashSet<>();
+    private List<RoleModel>roles;
     @OneToMany(mappedBy ="user" ,cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Accounts>accounts=new HashSet<Accounts>();
+//    @JsonIgnore
+    private List<Accounts> accounts;
 
     private boolean isEnabled;
 

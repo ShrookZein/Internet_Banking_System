@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,13 +64,13 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("A User with this userName ( "+addUserDto.getUserName() +" ) already exists.");
 //            return ResponseEntity.badRequest();
         }
-        Set<Accounts> accounts=accountRepo.findByBoolNationalId(addUserDto.getNationalId());
+        List<Accounts> accounts=accountRepo.findByBoolNationalId(addUserDto.getNationalId());
         System.out.println(accounts.size());
 //        accounts.forEach(accounts1 -> {
 //            accounts1.setUser(user);
 //            accountRepo.save(accounts1);
 //        });
-        Set<RoleModel> userRoles = new HashSet<>();
+        List<RoleModel> userRoles = new ArrayList<>();
         userRoles.add(roleService.findByName("user"));
         User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,null,true,true,true,true);
         user.setAccounts(accounts);

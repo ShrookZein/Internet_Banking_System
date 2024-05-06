@@ -48,7 +48,7 @@ public class AccountService {
         accountRepo.deleteById(accountNumber);
         return ResponseEntity.ok("An Account delete successfully");
     }
-    public Set<Accounts>getAllAccountByNationalId(Long boolNationalId){
+    public List<Accounts>getAllAccountByNationalId(Long boolNationalId){
 
         return accountRepo.findByBoolNationalId(boolNationalId);
     }

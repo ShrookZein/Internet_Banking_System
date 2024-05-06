@@ -2,10 +2,7 @@ package com.global.Internet_Banking_System.security;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -73,7 +70,7 @@ public class AuthService {
 //            return ResponseEntity.badRequest();
         }
         else{
-            Set<RoleModel> userRoles = new HashSet<>();
+            List<RoleModel> userRoles = new ArrayList<>();
             userRoles.add(roleService.findByName("user"));
             userService.save(new User(nationalId, fullName,userName, email, password,userRoles,null,true,true,true,true));
         }

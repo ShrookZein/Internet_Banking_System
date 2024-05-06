@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -34,14 +36,14 @@ public class StartUpApp implements CommandLineRunner {
 //            RoleModel roleModel1=new RoleModel(null, "user",null);
 //            --------------------------------------------------------------------------
 
-            Set<RoleModel> adminRoles = new HashSet<>();
+            List<RoleModel> adminRoles = new ArrayList<>();
 //            RoleModel roleModel=roleService.findByName("admin");
 //            System.out.println(roleModel.toString());
 
             adminRoles.add(roleService.findByName("admin"));
 //            adminRoles.add(roleModel);
 
-            Set<RoleModel> userRoles = new HashSet<>();
+            List<RoleModel> userRoles = new ArrayList<>();
             userRoles.add(roleService.findByName("user"));
 //            userRoles.add(roleModel1);
 
