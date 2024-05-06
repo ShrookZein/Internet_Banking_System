@@ -35,7 +35,7 @@ public class User {
     @OrderColumn(name = "id")
     private Set<RoleModel>roles=new HashSet<>();
     @OneToMany(mappedBy ="user" ,cascade = CascadeType.ALL)
-    @JsonIgnore
+//    @JsonIgnore
     private Set<Accounts>accounts=new HashSet<Accounts>();
 
     private boolean isEnabled;

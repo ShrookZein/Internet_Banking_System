@@ -18,11 +18,15 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
     @PostMapping("")
-    public ResponseEntity<?> findById(@RequestBody TransferRequestDto transferRequestDto){
+    public ResponseEntity<?> saveTransaction(@RequestBody TransferRequestDto transferRequestDto){
         return ResponseEntity.ok( transactionService.saveTransaction(transferRequestDto));
+    }
+    @GetMapping("")
+    public ResponseEntity<?> findALl(){
+        return transactionService.findAll();
     }
     @GetMapping("/{userId}")
     public ResponseEntity<?> findBySourceAccount(@PathVariable Long userId,@RequestParam  Long accountNumber){
-        return ResponseEntity.ok( transactionService.findBySourceAccount(userId,accountNumber));
+        return transactionService.findBySourceAccount(userId,accountNumber);
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -27,11 +28,16 @@ public class TransactionService {
     private AccountRepo accountRepo;
     @Autowired
     private AccountService accountService;
-    public ResponseEntity<Set<Transaction>>findBySourceAccount(Long userId, Long accountNumber){
+    public ResponseEntity<List<Transaction>>findAll(){
+        return ResponseEntity.ok(transactionRepo.findAll());
+    }
+    public ResponseEntity<List<Transaction>>findBySourceAccount(Long userId, Long accountNumber){
 //        if(transactionRepo.findBySourceAccount(accountRepo.findById(accountNumber).get()).isEmpty()){
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("An account with this Number ( "+accountNumber +" ) Not Exist.");
 //        }
-        return ResponseEntity.ok(transactionRepo.findBySourceAccount(accountRepo.findById(accountNumber).get()));
+        System.out.println(transactionRepo.findBySourceAccount(accountRepo.getById(accountNumber)).size());
+        System.out.println();
+        return ResponseEntity.ok(transactionRepo.findBySourceAccount(accountRepo.getById(accountNumber)));
     }
 
     public ResponseEntity<?> saveTransaction(TransferRequestDto transferRequestDto){

@@ -63,7 +63,7 @@ public class AccountService {
 //            userRoles.add(roleService.findByName("user"));
 //            User user=new User(accountDto.getNationalId(),null,null,null,"55",userRoles,null,true,true,true,true);
 //            userService.save(user);
-            Accounts account=new Accounts(accountDto.getAccountNumber(),accountDto.getBalance(),accountDto.getNationalId(),null,null,null);
+            Accounts account=new Accounts(accountDto.getAccountNumber(),accountDto.getBalance(),accountDto.getNationalId(),null,null);
 //            user.getAccounts().add(account);
 //            account.setUser(user);
             accountRepo.save(account);
@@ -71,7 +71,7 @@ public class AccountService {
         }
         User user=userService.findById(accountDto.getNationalId());
         System.out.println(user.getNationalId());
-        Accounts newAccount=new Accounts(accountDto.getAccountNumber(),accountDto.getBalance(),null,null,null,null);
+        Accounts newAccount=new Accounts(accountDto.getAccountNumber(),accountDto.getBalance(),null,null,null);
         newAccount.setUser(user);
 //        user.getAccounts().add(newAccount);
         accountRepo.save(newAccount);

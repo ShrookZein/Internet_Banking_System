@@ -25,10 +25,10 @@ public class Accounts {
     @JoinColumn(name = "national_id")
     @JsonIgnore
     private User user;
-    @OneToMany(mappedBy ="sourceAccount",cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy ="sourceAccount",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
+//    @JsonIgnore
     private Set<Transaction> transaction=new HashSet<>();
-    @OneToOne(mappedBy = "destinationAccount")
-    @JsonIgnore
-    private Transaction transaction1;
+//    @OneToOne(mappedBy = "destinationAccount")
+//    @JsonIgnore
+//    private Transaction transaction1;
 }

@@ -21,12 +21,21 @@ public class Transaction {
     private Date data;
 //    private Timestamp timestamp;
     private double amount;
-    @ManyToOne
-    @JoinColumn(name = "sourceAccount_id")
-//    @JsonIgnore
+//    @ManyToOne
+//    @JoinColumn(name = "sourceAccount_id")
+////    @JsonIgnore
+//    private Accounts sourceAccount;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "destinationAccount_id")
+////    @JsonIgnore
+//    private Accounts destinationAccount;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "source_account_id")
+    @JsonIgnore
     private Accounts sourceAccount;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "destinationAccount_id")
-//    @JsonIgnore
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "destination_account_id")
+    @JsonIgnore
     private Accounts destinationAccount;
 }
