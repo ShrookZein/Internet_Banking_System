@@ -42,7 +42,7 @@ public class TokenInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", referencedColumnName = "national_id")
-//    @JsonIgnore
+    @JsonIgnore
     private User user;
 
 

@@ -23,7 +23,7 @@ public class Accounts {
     private Long boolNationalId;
     @ManyToOne
     @JoinColumn(name = "national_id")
-    @JsonIgnore
+//    @JsonIgnore
     private User user;
     @OneToMany(mappedBy ="sourceAccount",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 //    @JsonIgnore
