@@ -63,8 +63,12 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("A User with this userName ( "+addUserDto.getUserName() +" ) already exists.");
 //            return ResponseEntity.badRequest();
         }
-        Set<Accounts> accounts=accountService.getAllAccountByNationalId(addUserDto.getNationalId());
+        Set<Accounts> accounts=accountRepo.findByBoolNationalId(addUserDto.getNationalId());
         System.out.println(accounts.size());
+//        accounts.forEach(accounts1 -> {
+//            accounts1.setUser(user);
+//            accountRepo.save(accounts1);
+//        });
         Set<RoleModel> userRoles = new HashSet<>();
         userRoles.add(roleService.findByName("user"));
         User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,null,true,true,true,true);
@@ -74,6 +78,10 @@ public class UserController {
 //            accountRepo.save(accounts1);
 //        });
         ResponseEntity<?> user1=userService.saveUser(adminId,user);
+                accounts.forEach(accounts1 -> {
+            accounts1.setUser(user);
+            accountRepo.save(accounts1);
+        });
         return ResponseEntity.ok( user1);
     }
 }

@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @Entity
@@ -19,11 +19,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date data;
-    private Timestamp timestamp;
-    private double balance;
+//    private Timestamp timestamp;
+    private double amount;
     @ManyToOne
     @JoinColumn(name = "sourceAccount_id")
-    @JsonIgnore
+//    @JsonIgnore
     private Accounts sourceAccount;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "destinationAccount_id")

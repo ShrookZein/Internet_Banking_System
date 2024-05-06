@@ -23,12 +23,12 @@ public class Accounts {
     private Long boolNationalId;
     @ManyToOne
     @JoinColumn(name = "national_id")
-//    @JsonIgnore
+    @JsonIgnore
     private User user;
     @OneToMany(mappedBy ="sourceAccount",cascade = CascadeType.ALL)
-//    @JsonIgnore
+    @JsonIgnore
     private Set<Transaction> transaction=new HashSet<>();
     @OneToOne(mappedBy = "destinationAccount")
-//    @JsonIgnore
+    @JsonIgnore
     private Transaction transaction1;
 }
