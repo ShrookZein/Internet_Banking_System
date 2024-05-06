@@ -75,7 +75,7 @@ public class AuthService {
         else{
             Set<RoleModel> userRoles = new HashSet<>();
             userRoles.add(roleService.findByName("user"));
-            userService.save(new User(null, fullName,userName,nationalId, email, password,userRoles,true,true,true,true));
+            userService.save(new User(nationalId, fullName,userName, email, password,userRoles,null,true,true,true,true));
         }
 
         Authentication authentication = authManager.authenticate(
@@ -86,7 +86,7 @@ public class AuthService {
         AppUserDetail userDetails = (AppUserDetail) authentication.getPrincipal();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        log.debug("SecurityContextHolder updated. [login={}]", email);
+        log.debug("SecurityContextHolder updated. [login={}]", userName);
 
 
         TokenInfo  tokenInfo = createLoginToken(userName, userDetails.getId());

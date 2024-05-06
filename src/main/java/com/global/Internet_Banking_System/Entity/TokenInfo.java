@@ -40,7 +40,7 @@ public class TokenInfo {
     private String remoteIpAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "national_id")
     private User user;
 
 

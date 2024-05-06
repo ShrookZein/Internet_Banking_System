@@ -6,6 +6,7 @@ import com.global.Internet_Banking_System.security.AppUserDetail;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,27 @@ public class UserService implements UserDetailsService {
     public User save(User entity){
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return userRepo.save(entity);
+    }
+    public ResponseEntity<?> saveUser(Long adminId,User entity){
+        System.out.println(userRepo.getById(adminId).getRoles().stream().findFirst().get().getName());
+        if(!userRepo.getById(adminId).getRoles().stream().findFirst().get().getName().equals("admin")){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An account Role with this NationalId ( "+adminId +" ) Not Admin.");
+        }
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return ResponseEntity.ok(userRepo.save(entity));
+    }
+    public ResponseEntity<?> deleteUser(Long adminId,Long nationalId){
+        System.out.println(userRepo.getById(adminId).getRoles().stream().findFirst().get().getName());
+        if(!userRepo.getById(adminId).getRoles().stream().findFirst().get().getName().equals("admin")){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An account Role with this NationalId ( "+adminId +" ) Not Admin.");
+        }
+        User user=userRepo.findById(nationalId).get();
+        if (userRepo.findById(nationalId).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("An account with this NationalId ( "+user.getNationalId() +" ) Not Found.");
+        }
+
+        userRepo.delete(user);
+        return ResponseEntity.ok("User Delete successfully");
     }
 
     @Override

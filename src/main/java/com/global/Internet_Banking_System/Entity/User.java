@@ -19,20 +19,24 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "USER_ID")
-    private Long id;
-    private String FullName;
-    private String userName;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "national_id")
+//    private Long id;
     private Long nationalId;
+    private String fullName;
+    private String userName;
+//    private Long nationalId;
     @Email
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
 //    @JsonIgnore
-    @JoinTable(name = "sec_user_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "sec_user_roles",joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "national_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     @OrderColumn(name = "id")
     private Set<RoleModel>roles=new HashSet<>();
+    @OneToMany(mappedBy ="user" ,cascade = CascadeType.ALL)
+//    @JsonIgnore
+    private Set<Accounts>accounts=new HashSet<Accounts>();
 
     private boolean isEnabled;
 
@@ -44,6 +48,6 @@ public class User {
 
     public User(Long userId) {
         super();
-        this.id=userId;
+        this.nationalId=userId;
     }
 }

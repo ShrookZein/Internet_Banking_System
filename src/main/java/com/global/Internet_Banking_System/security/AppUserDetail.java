@@ -16,7 +16,7 @@ public class AppUserDetail implements UserDetails {
     private Long id;
     private String fullName;
     private String userName;
-    private String nationalId;
+//    private String nationalId;
     private String email;
     private String password;
     List<GrantedAuthority> authorities;
@@ -34,7 +34,7 @@ public class AppUserDetail implements UserDetails {
 
     public AppUserDetail(User user) {
         super();
-        this.id= user.getId();
+        this.id= user.getNationalId();
         this.fullName=user.getFullName();
         this.userName=user.getUserName();
         this.email=user.getEmail();
@@ -63,7 +63,7 @@ public class AppUserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return userName;
     }
 
     @Override
