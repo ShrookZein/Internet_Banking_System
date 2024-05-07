@@ -36,6 +36,6 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_account_id")
-    @JsonIgnore
+    @JsonIgnore()
     private Accounts destinationAccount;
 }
