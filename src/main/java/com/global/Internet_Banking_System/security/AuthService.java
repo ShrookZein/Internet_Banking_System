@@ -6,10 +6,13 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.global.Internet_Banking_System.Entity.Accounts;
 import com.global.Internet_Banking_System.Entity.RoleModel;
 import com.global.Internet_Banking_System.Entity.TokenInfo;
 import com.global.Internet_Banking_System.Entity.User;
+import com.global.Internet_Banking_System.repository.AccountRepo;
 import com.global.Internet_Banking_System.repository.UserRepo;
+import com.global.Internet_Banking_System.service.AccountService;
 import com.global.Internet_Banking_System.service.RoleService;
 import com.global.Internet_Banking_System.service.TokenInfoService;
 import com.global.Internet_Banking_System.service.UserService;
@@ -40,6 +43,7 @@ public class AuthService {
     private final UserRepo userRepo;
     private final UserService userService;
     private final RoleService roleService;
+    private final AccountRepo accountRepo;
 
     public JWTResponseDto login(String login, String password) {
         Authentication authentication = authManager.authenticate(
@@ -70,9 +74,10 @@ public class AuthService {
 //            return ResponseEntity.badRequest();
         }
         else{
+            List<Accounts> accounts=accountRepo.findByBoolNationalId(nationalId);
             List<RoleModel> userRoles = new ArrayList<>();
             userRoles.add(roleService.findByName("user"));
-            userService.save(new User(nationalId, fullName,userName, email, password,userRoles,null,true,true,true,true));
+            userService.save(new User(nationalId, fullName,userName, email, password,userRoles,accounts,true,true,true,true));
         }
 
         Authentication authentication = authManager.authenticate(
