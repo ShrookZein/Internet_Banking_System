@@ -72,17 +72,17 @@ public class UserController {
 //        });
         List<RoleModel> userRoles = new ArrayList<>();
         userRoles.add(roleService.findByName("user"));
-        User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,null,true,true,true,true);
+        User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,accounts,true,true,true,true);
         user.setAccounts(accounts);
 //        accounts.forEach(accounts1 -> {
 //            accounts1.setUser(user);
 //            accountRepo.save(accounts1);
 //        });
         ResponseEntity<?> user1=userService.saveUser(adminId,user);
-                accounts.forEach(accounts1 -> {
-            accounts1.setUser(user);
-            accountRepo.save(accounts1);
-        });
+//                accounts.forEach(accounts1 -> {
+//            accounts1.setUser(user);
+//            accountRepo.save(accounts1);
+//        });
         return ResponseEntity.ok( user1);
     }
 }
