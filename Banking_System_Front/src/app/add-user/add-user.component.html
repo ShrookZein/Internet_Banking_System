@@ -1,0 +1,91 @@
+<div class="container">
+  <div *ngIf="apiError.length > 0" class="alert alert-danger">
+    {{ apiError }}
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="addUserForm" (ngSubmit)="handleAddUser(addUserForm)">
+        <div class="mb-3">
+          <label for="exampleInputName" class="form-label">Full Name</label>
+          <input formControlName="fullName" type="text" class="form-control mb-2" id="fullName">
+    <div class="form-text" *ngIf="addUserForm.get('fullName')?.errors && addUserForm.get('fullName')?.touched ">
+        <p *ngIf="addUserForm.get('fullName')?.getError('pattern') " class="m-0">fullName can include numbers, at least 1 Capital letter, special char and spaces</p>
+        <p *ngIf="addUserForm.get('fullName')?.getError('maxlength') " class="m-0">fullName max length is 20</p>
+        <p *ngIf="addUserForm.get('fullName')?.getError('required') " class="m-0">fullName is required</p>
+    </div>
+          <!-- <div id="nameHelp" class="form-text">We'll never share your name with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputName" class="form-label">User Name</label>
+          <input formControlName="userName" type="text" class="form-control mb-2" id="userName">
+    <div class="form-text" *ngIf="addUserForm.get('userName')?.errors && addUserForm.get('userName')?.touched ">
+        <p *ngIf="addUserForm.get('userName')?.getError('pattern') " class="m-0">userName can include numbers, at least 1 Capital letter, special char and spaces</p>
+        <p *ngIf="addUserForm.get('userName')?.getError('maxlength') " class="m-0">userName max length is 20</p>
+        <p *ngIf="addUserForm.get('userName')?.getError('required') " class="m-0">userName is required</p>
+    </div>
+          <!-- <div id="nameHelp" class="form-text">We'll never share your name with anyone else.</div> -->
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input formControlName="password" type="password" class="form-control mb-2" id="password">
+          <div class="form-text" *ngIf="addUserForm.get('password')?.errors && addUserForm.get('password')?.touched ">
+          <p *ngIf="addUserForm.get('password')?.getError('pattern') " class="m-0">password must start with upper case and then 8 to 20 </p>
+          <p *ngIf="addUserForm.get('password')?.getError('required') " class="m-0">password is required</p>
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input formControlName="email" type="email" class="form-control mb-2" id="email">
+          <div class="form-text" *ngIf="addUserForm.get('email')?.errors && addUserForm.get('email')?.touched ">
+              <p *ngIf="addUserForm.get('email')?.getError('email') " class="m-0">email invalid</p>
+              <p *ngIf="addUserForm.get('email')?.getError('required') " class="m-0">email is required</p>
+          </div>
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputnationalID" class="form-label"
+            >User nationalID</label
+          >
+          <input
+            formControlName="nationalId"
+            type="number"
+            class="form-control mb-2"
+            id="nationalId"
+          />
+          <div
+            class="form-text"
+            *ngIf="
+              addUserForm.get('nationalId')?.errors &&
+              addUserForm.get('nationalId')?.touched
+            "
+          >
+            <p
+              *ngIf="addUserForm.get('nationalId')?.getError('pattern')"
+              class="m-0"
+            >
+              nationalId ID Special characters, Characters and Spaces are not
+              allowed
+            </p>
+            <p
+              *ngIf="addUserForm.get('nationalId')?.getError('maxlength')"
+              class="m-0"
+            >
+              nationalId max length is 14
+            </p>
+            <p
+              *ngIf="addUserForm.get('nationalId')?.getError('required')"
+              class="m-0"
+            >
+              nationalId is required
+            </p>
+          </div>
+          <!-- <div id="nationalIDHelp" class="form-text">We'll never share your nationalID with anyone else.</div> -->
+        </div>
+        <button type="submit" class="btn btn-primary">Submit <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i></button>
+      </form>
+    </div>
+  </div>
+</div>

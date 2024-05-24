@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="addAccountForm" (ngSubmit)="handleAddAccount(addAccountForm)">
+            <div class="mb-3">
+              <label for="exampleInputaccountNumber" class="form-label"
+              >User accountNumber</label
+            >
+            <input
+              formControlName="accountNumber"
+              type="number"
+              class="form-control mb-2"
+              id="accountNumber"
+            />
+            <div
+              class="form-text"
+              *ngIf="
+                addAccountForm.get('accountNumber')?.errors &&
+                addAccountForm.get('accountNumber')?.touched
+              "
+            >
+              <p
+                *ngIf="addAccountForm.get('accountNumber')?.getError('required')"
+                class="m-0"
+              >
+                accountNumber is required
+              </p>
+              <p
+                  *ngIf="addAccountForm.get('accountNumber')?.getError('pattern')"
+                  class="m-0"
+                >
+                  Account number  Special characters, Characters and Spaces are not
+                  allowed
+                </p>
+                <p
+                  *ngIf="addAccountForm.get('accountNumber')?.getError('maxlength')"
+                  class="m-0"
+                >
+                  Account number max length is 14
+                </p>
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="exampleInputbalance" class="form-label"
+            > balance</label
+          >
+          <input
+            formControlName="balance"
+            type="number"
+            class="form-control mb-2"
+            id="balance"
+          />
+          <div
+            class="form-text"
+            *ngIf="
+              addAccountForm.get('balance')?.errors &&
+              addAccountForm.get('balance')?.touched
+            "
+          >
+            <p
+              *ngIf="addAccountForm.get('balance')?.getError('required')"
+              class="m-0"
+            >
+            balance is required
+            </p>
+            
+          </div>
+        </div>
+
+
+              <label for="exampleInputnationalID" class="form-label"
+                >User nationalID</label
+              >
+              <input
+                formControlName="nationalId"
+                type="number"
+                class="form-control mb-2"
+                id="nationalId"
+              />
+              <div
+                class="form-text"
+                *ngIf="
+                  addAccountForm.get('nationalId')?.errors &&
+                  addAccountForm.get('nationalId')?.touched
+                "
+              >
+                <p
+                  *ngIf="addAccountForm.get('nationalId')?.getError('pattern')"
+                  class="m-0"
+                >
+                  nationalId ID Special characters, Characters and Spaces are not
+                  allowed
+                </p>
+                <p
+                  *ngIf="addAccountForm.get('nationalId')?.getError('maxlength')"
+                  class="m-0"
+                >
+                  nationalId max length is 14
+                </p>
+                <p
+                  *ngIf="addAccountForm.get('nationalId')?.getError('required')"
+                  class="m-0"
+                >
+                  nationalId is required
+                </p>
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Submit <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i></button>
+          </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+<div class="container">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="mb-3">Funds Transfer</h3>
+        <form [formGroup]="TransationForm" (ngSubmit)="handleTransation(TransationForm)">
+          <div class="mb-3">
+
+            <label for="exampleInputsourceAccountNumber" class="form-label"
+              >Your Account Number</label
+            >
+            <input
+              formControlName="sourceAccountNumber"
+              type="number"
+              class="form-control mb-2"
+              id="sourceAccountNumber"
+              [value]=AcountId
+            />
+            <div
+              class="form-text"
+              *ngIf="
+                TransationForm.get('sourceAccountNumber')?.errors &&
+                TransationForm.get('sourceAccountNumber')?.touched
+              "
+            >
+              <p
+                *ngIf="TransationForm.get('sourceAccountNumber')?.getError('pattern')"
+                class="m-0"
+              >
+                Account Number  Special characters, Characters and Spaces are not
+                allowed
+              </p>
+              <p
+                *ngIf="TransationForm.get('sourceAccountNumber')?.getError('maxlength')"
+                class="m-0"
+              >
+                Account Number max length is 14
+              </p>
+              <p
+                *ngIf="TransationForm.get('sourceAccountNumber')?.getError('required')"
+                class="m-0"
+              >
+                Account Number is required
+              </p>
+            </div>
+          </div>
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputdestinationAccountNumber" class="form-label"
+              >Destination Account Number</label
+            >
+            <input
+              formControlName="destinationAccountNumber"
+              type="number"
+              class="form-control mb-2"
+              id="destinationAccountNumber"
+            />
+            <div
+              class="form-text"
+              *ngIf="
+                TransationForm.get('destinationAccountNumber')?.errors &&
+                TransationForm.get('destinationAccountNumber')?.touched
+              "
+            >
+              <p
+                *ngIf="TransationForm.get('destinationAccountNumber')?.getError('pattern')"
+                class="m-0"
+              >
+              Destination Account Number  Special characters, Characters and Spaces are not
+                allowed
+              </p>
+              <p
+                *ngIf="TransationForm.get('destinationAccountNumber')?.getError('maxlength')"
+                class="m-0"
+              >
+              Destination Account Number max length is 14
+              </p>
+              <p
+                *ngIf="TransationForm.get('destinationAccountNumber')?.getError('required')"
+                class="m-0"
+              >
+              Destination Account Number is required
+              </p>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputamount" class="form-label"
+              >Amount</label
+            >
+            <input
+              formControlName="amount"
+              type="number"
+              class="form-control mb-2"
+              id="amount"
+            />
+            <div
+              class="form-text"
+              *ngIf="
+                TransationForm.get('amount')?.errors &&
+                TransationForm.get('amount')?.touched
+              "
+            >
+              
+              <p
+                *ngIf="TransationForm.get('amount')?.getError('required')"
+                class="m-0"
+              >
+                amount is required
+              </p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i></button>
+        </form>
+      </div>
+      <div class="col-md-12 my-5 border pb-4">
+        <h3 class="mb-3">Account Information</h3>
+        <button  class="btn btn-primary me-3" (click)="getBalnce()">View Balance </button>
+       
+        <button  class="btn btn-primary " (click)="getTransactions()">Transaction History </button>
+
+        <div class="row border mt-5" *ngIf="balance">
+            <div class="col-md-8 py-3">
+                <div class="fw-bold w-50" >
+                    {{AccountDetails.balance}}
+
+                </div>
+                
+            </div>
+            <div class="col-md-4 text-end py-3">
+                <span (click)="hideBalnce()">  X</span>
+                
+            </div>
+        </div>
+        <div class="" *ngIf="transactionsShow">
+            <div class="row"  >
+                <div class="col-md-8 py-3">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let transaction of transactions">
+                            <td>{{transaction.id}}</td>
+                            <td>{{transaction.data}}</td>
+                            <td>{{transaction.amount}}</td>
+                          </tr> 
+                        </tbody>
+                      </table>
+                </div>
+                <div class="col-md-4 text-end py-3">
+                    <span (click)="hideTransactions()">  X</span>
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  

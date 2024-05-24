@@ -1,0 +1,63 @@
+<nav
+    class="navbar navbar-expand-sm navbar-light bg-light"
+>
+    <div class="container">
+        <h1><a class="navbar-brand" href="#">Bank</a></h1>
+        <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <!-- <ul class="navbar-nav me-auto mt-2 mt-lg-0" *ngIf="showHomeLink">
+                <li class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link active" routerLink="home" aria-current="page"
+                        >Home
+                        <span class="visually-hidden">(current)</span></a
+                    >
+                    
+                </li>
+                
+               
+               
+            </ul> -->
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item" *ngIf="isLogin" (click)="logout()">
+                    <span class="nav-link active" 
+                        >Logout
+                        <span class="visually-hidden">(current)</span></span
+                    >
+                </li>
+                <!-- <li class="nav-item" >
+                    <a class="nav-link active" routerLink="/settings" *ngIf="isLogin">Setting
+                        </a
+                    >
+                </li> -->
+                <li class="nav-item" *ngIf="!isLogin">
+                    <a class="nav-link active" routerLink="login" aria-current="page"
+                    >Login
+                    <span class="visually-hidden">(current)</span></a
+                >
+                </li>
+                <li class="nav-item cursor-pointer" *ngIf="!isLogin">
+                    <a class="nav-link active " routerLink="register" aria-current="page"
+                    >Register
+                    <span class="visually-hidden ">(current)</span></a
+                >
+                </li>
+                
+                    
+                  
+                
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+

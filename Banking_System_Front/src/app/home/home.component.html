@@ -1,0 +1,33 @@
+<div class="container py-5 px-0" >
+    <div class="row ">
+        <div class="col-md-4 ps-0 ms-0">
+            <ul class="nav nav-pills nav-fill gap-2 p-3 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+                <li class="nav-item w-75" role="presentation">
+                  <a class="nav-link active rounded-5" routerLink="add-user"  id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Add User</a>
+                </li>
+                <li class="nav-item w-75" role="presentation">
+                  <a class="nav-link rounded-5" id="profile-tab2" routerLink="delete-user" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Delete User</a>
+                </li>
+                <li class="nav-item w-75" role="presentation">
+                  <a class="nav-link rounded-5" id="contact-tab2" routerLink="add-account" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Add Account </a>
+                </li>
+                <li class="nav-item w-75" role="presentation">
+                    <a class="nav-link rounded-5" id="contact-tab2" routerLink="delete-account" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Delete Account</a>
+                </li>
+                <li class="nav-item w-75" role="presentation">
+                <a class="nav-link rounded-5" id="contact-tab2" routerLink="view-balance" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">View Balance</a>
+                </li>
+               
+                
+              </ul>
+        </div>
+        <div class="col-md-8">
+          <router-outlet></router-outlet>
+        </div>
+    </div>
+  </div>
+
+
+
+   
+

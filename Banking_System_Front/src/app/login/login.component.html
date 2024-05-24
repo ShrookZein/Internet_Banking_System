@@ -1,0 +1,29 @@
+<div class="w-75 mx-auto py-4">
+    <h4>Login now:</h4>
+    <div *ngIf="apiError.length>0" class="alert alert-danger">
+        {{apiError}}
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin(loginForm)">
+    <label for="">User Name:</label>
+    <input formControlName="userName" type="text" class="form-control mb-2" id="userName">
+    <div class="alert alert-danger" *ngIf="loginForm.get('userName')?.errors && loginForm.get('userName')?.touched ">
+        <p *ngIf="loginForm.get('userName')?.getError('pattern') " class="m-0">userName invalid and least 1 Capital letter</p>
+        <p *ngIf="loginForm.get('userName')?.getError('required') " class="m-0">userName is required</p>
+        <p *ngIf="loginForm.get('userName')?.getError('maxLength') " class="m-0">userName maxLength 20</p>
+
+    </div>
+    <label for="">password:</label>
+    <input formControlName="password" type="password" class="form-control mb-2" id="password">
+    <div class="alert alert-danger" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched ">
+        <p *ngIf="loginForm.get('password')?.getError('pattern') " class="m-0">password must start with upper case and must be between 8 to 20 characters and doesn't include special char or spaces and include special char </p>
+        <p *ngIf="loginForm.get('password')?.getError('required') " class="m-0">password is required</p>
+    </div>
+    <button  type="submit" [disabled]="loginForm.invalid" class="btn d-block ms-auto border-none border-0 text-white">
+        <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+        <span *ngIf="!isLoading">login</span>
+    </button>
+    
+
+</form>
+</div>
+

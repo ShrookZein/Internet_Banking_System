@@ -1,0 +1,51 @@
+<div class="w-75 mx-auto py-4">
+    <h4>Register now:</h4>
+    <div *ngIf="apiError.length>0" class="alert alert-danger">
+        {{apiError}}
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="handleRegister(registerForm)">
+    <label for="">full name:</label>
+    <input formControlName="fullName" type="text" class="form-control mb-2" id="fullName">
+    <div class="alert alert-danger" *ngIf="registerForm.get('fullName')?.errors && registerForm.get('fullName')?.touched ">
+        <p *ngIf="registerForm.get('fullName')?.getError('minlength') " class="m-0">fullName min length is 3</p>
+        <p *ngIf="registerForm.get('fullName')?.getError('pattern') " class="m-0">Full fullName must include characters and spaces begin or end with space and cannot include digits or special char</p>
+        <p *ngIf="registerForm.get('fullName')?.getError('required') " class="m-0">fullName is required</p>
+    </div>
+
+    <label for="">National ID:</label>
+    <input formControlName="nationalId" type="number" class="form-control mb-2" id="nationalId">
+    <div class="alert alert-danger" *ngIf="registerForm.get('nationalId')?.errors && registerForm.get('nationalId')?.touched ">
+        <p *ngIf="registerForm.get('nationalId')?.getError('pattern') " class="m-0">nationalId ID Special characters, Characters and Spaces are not allowed   </p>
+        <p *ngIf="registerForm.get('nationalId')?.getError('maxlength') " class="m-0">nationalId max length is 14</p>
+        <p *ngIf="registerForm.get('nationalId')?.getError('required') " class="m-0">nationalId is required</p>
+    </div>
+
+    <label for="">User name:</label>
+    <input formControlName="userName" type="text" class="form-control mb-2" id="userName">
+    <div class="alert alert-danger" *ngIf="registerForm.get('userName')?.errors && registerForm.get('userName')?.touched ">
+        <p *ngIf="registerForm.get('userName')?.getError('pattern') " class="m-0">userName can include numbers, at least 1 Capital letter, special char and spaces</p>
+        <p *ngIf="registerForm.get('userName')?.getError('maxlength') " class="m-0">userName max length is 20</p>
+        <p *ngIf="registerForm.get('userName')?.getError('required') " class="m-0">userName is required</p>
+    </div>
+    <label for="">email:</label>
+    <input formControlName="email" type="email" class="form-control mb-2" id="email">
+    <div class="alert alert-danger" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched ">
+        <p *ngIf="registerForm.get('email')?.getError('email') " class="m-0">email invalid</p>
+        <p *ngIf="registerForm.get('email')?.getError('required') " class="m-0">email is required</p>
+    </div>
+    <label for="">password:</label>
+    <input formControlName="password" type="password" class="form-control mb-2" id="password">
+    <div class="alert alert-danger" *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched ">
+        <p *ngIf="registerForm.get('password')?.getError('pattern') " class="m-0">password must start with upper case and then 8 to 20 </p>
+        <p *ngIf="registerForm.get('password')?.getError('required') " class="m-0">password is required</p>
+    </div>
+    
+    
+    <button  type="submit" [disabled]="registerForm.invalid" class="btn d-block ms-auto border-none border-0 text-white">
+    <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+    <span *ngIf="!isLoading">Register</span>
+    </button>
+    
+
+</form>
+</div>

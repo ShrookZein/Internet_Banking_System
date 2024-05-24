@@ -1,0 +1,37 @@
+<div class="container">
+  <div *ngIf="apiError.length > 0" class="alert alert-danger">
+    {{ apiError }}
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="DeleteAccountForm" (ngSubmit)="handleDeleteAccount(DeleteAccountForm)">
+        <div class="mb-3">
+          <label for="exampleInputaccountNumber" class="form-label"
+            >User accountNumber</label
+          >
+          <input
+            formControlName="accountNumber"
+            type="number"
+            class="form-control mb-2"
+            id="accountNumber"
+          />
+          <div
+            class="form-text"
+            *ngIf="
+              DeleteAccountForm.get('accountNumber')?.errors &&
+              DeleteAccountForm.get('accountNumber')?.touched
+            "
+          >
+            <p
+              *ngIf="DeleteAccountForm.get('accountNumber')?.getError('required')"
+              class="m-0"
+            >
+              accountNumber is required
+            </p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i></button>
+      </form>
+    </div>
+  </div>
+</div>

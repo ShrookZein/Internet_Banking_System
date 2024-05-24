@@ -1,0 +1,46 @@
+<div class="container">
+    <div *ngIf="apiError.length > 0" class="alert alert-danger">
+      {{ apiError }}
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form [formGroup]="ViewBalanceForm" (ngSubmit)="handleViewBalance(ViewBalanceForm)">
+          <div class="mb-3">
+            <label for="exampleInputaccountNumber" class="form-label"
+              >User accountNumber</label
+            >
+            <input
+              formControlName="accountNumber"
+              type="number"
+              class="form-control mb-2"
+              id="accountNumber"
+            />
+            <div
+              class="form-text"
+              *ngIf="
+                ViewBalanceForm.get('accountNumber')?.errors &&
+                ViewBalanceForm.get('accountNumber')?.touched
+              "
+            >
+             
+              <p
+                *ngIf="ViewBalanceForm.get('accountNumber')?.getError('required')"
+                class="m-0"
+              >
+                Balance is required
+              </p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="showBalance()">Submit <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i></button>
+        </form>
+      </div>
+
+    </div>
+    <div class="row mt-4" *ngIf="hideBalance">
+        <div class="col-md-8">
+            <h4>{{balance}}</h4>
+        </div>
+        <div class="col-md-4 text-end" (click)="HideBalance()">X</div>
+    </div>
+  </div>
+  
