@@ -44,6 +44,7 @@ public class UserService implements UserDetailsService {
         if(!userRepo.getById(adminId).getRoles().stream().findFirst().get().getName().equals("admin")){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An account Role with this NationalId ( "+adminId +" ) Not Admin.");
         }
+//        if()
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return ResponseEntity.ok(userRepo.save(entity));
     }

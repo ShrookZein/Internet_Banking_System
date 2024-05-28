@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -24,5 +26,5 @@ public class RoleModel {
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JsonIgnore
 //    @JoinTable(name = "sec_user_roles",joinColumns = @JoinColumn(name = "role_id"),inverseJoinColumns = @JoinColumn(name = "user_id",referencedColumnName = "national_id"))
-//    private Set<User> users=new HashSet<>();
+//    private List<User> users=new ArrayList<>();
 }

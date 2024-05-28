@@ -72,17 +72,33 @@ public class UserController {
 //        });
         List<RoleModel> userRoles = new ArrayList<>();
         userRoles.add(roleService.findByName("user"));
-        User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,accounts,true,true,true,true);
-        user.setAccounts(accounts);
+//        User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,accounts,true,true,true,true);
+        User user=new User(addUserDto.getNationalId(),addUserDto.getFullName(),addUserDto.getUserName(),addUserDto.getEmail(),addUserDto.getPassword(),userRoles,null,true,true,true,true);
+
+//        user.setAccounts(accounts);
+
+
 //        accounts.forEach(accounts1 -> {
 //            accounts1.setUser(user);
 //            accountRepo.save(accounts1);
 //        });
-        ResponseEntity<?> user1=userService.saveUser(adminId,user);
-//                accounts.forEach(accounts1 -> {
-//            accounts1.setUser1(user1);
-//            accountRepo.save(accounts1);
-//        });
-        return ResponseEntity.ok( user1);
+        userService.saveUser(adminId,user);
+
+//        Accounts accounts1=accounts.get(1);
+//        System.out.println(accounts1);
+//        accounts1.setUser(user);
+//        accounts1.getUser().setAccounts(accounts);
+//        System.out.println(accounts1.getUser());
+//        accountRepo.save(accounts1);
+
+
+        for(int i=0;i<accounts.size();i++){
+           Accounts accounts1=accounts.get(i);
+                   accounts1.setUser(user);
+            accountRepo.save(accounts1);
+        }
+        User user1=userService.findById(addUserDto.getNationalId());
+        System.out.println(userService.findById(addUserDto.getNationalId()));
+        return ResponseEntity.ok(user1 );
     }
 }

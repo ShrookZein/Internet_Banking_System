@@ -1,6 +1,8 @@
 package com.global.Internet_Banking_System.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
+//@JsonIgnoreProperties(value={ "user"},allowSetters =true)
 public class Accounts {
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,8 @@ public class Accounts {
     private Long boolNationalId;
     @ManyToOne
     @JoinColumn(name = "national_id")
-    @JsonIgnore
+    @JsonIgnore()
+//    @JsonProperty("user")
     private User user;
     @OneToMany(mappedBy ="sourceAccount",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 //    @JsonIgnore
